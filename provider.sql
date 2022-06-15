@@ -43,7 +43,7 @@ WHERE provider_id = 1234;
 
 -- Most frequetnly used durations for each visit type
 SELECT 
-	visit_type,
+    visit_type,
     duration
 FROM 
 (
