@@ -49,15 +49,13 @@ FROM
 (
 SELECT visit_type, 
            duration,
-           row_number() OVER (
-			PARTITION BY visit_type 
-            ORDER BY duration_frequency DESC) AS row_num
+           row_number() OVER (PARTITION BY visit_type ORDER BY duration_frequency DESC) AS row_num
 FROM (SELECT visit_type,
-				duration, 
-				count(duration) AS duration_frequency
-	  FROM providers_visit
-	  GROUP BY 1, 2
-	  ) AS frequency
+		duration, 
+		count(duration) AS duration_frequency
+	FROM providers_visit
+	GROUP BY 1, 2
+	) AS frequency
 ) AS a
 WHERE a.row_num = 1
 
